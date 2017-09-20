@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example client for JsonToGdxNodeFFI</title>
+
+    <script src="socket.io.js"></script>
+    <script src="jquery-3.1.1.min.js"></script>
+    <script src="index.js"></script>
+</head>
+<body>
+
+    <form>
+        <label>Knapsack size: <input id="kssize" type="number" value="23" /></label><br />
+        <label>Number of items: <input id="ksnumitems" type="number" value="4" /></label>
+        <div id="myksitementries">
+        </div>
+        <input type="button" id="btnshowjson" value="Show data as json" />
+        <input type="button" id="solvebtn" value="Solve with GAMS" /><br />
+        <div id="resultbox"></div>
+    </form>
+
+
+</body>
+</html>

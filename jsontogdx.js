@@ -13,7 +13,7 @@ const lib = ffi.Library(JSON_TO_GDX_LIB_PATH, {
 module.exports = {
     'setGAMSDirectories': lib.setGAMSDirectories,
     'writeJsonToGdxFile': function(json, gdxfn) { lib.writeJsonStrToGdxFile(JSON.stringify(json), gdxfn); },
-    'solveModelWithDataJson': function(modelCode, json) { return lib.solveModelWithDataJsonStr(modelCode, JSON.stringify(json)); },
+    'solveModelWithDataJson': function(modelCode, json) { return JSON.parse(lib.solveModelWithDataJsonStr(modelCode, JSON.stringify(json))); },
     'setGAMSOptions': function(options) { lib.setGAMSOptions(JSON.stringify(options)); },
-    'readJsonFromGdxFile': function(gdxfn) { return lib.readJsonStrFromGdxFile(gdxfn); }
+    'readJsonFromGdxFile': function(gdxfn) { return JSON.parse(lib.readJsonStrFromGdxFile(gdxfn)); }
 };
