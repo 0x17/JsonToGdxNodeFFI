@@ -56,6 +56,10 @@ $(document).ready(function() {
         socket.emit('my other event', { my: 'data' });
     });
 
+    socket.on('sendcode', function(data) {
+        $('#tamodelcode').val(data.code);
+    });
+
     $('#ksnumitems').on('change', function(evt) {
         updateNumItems($(this).val());
     });
@@ -72,7 +76,7 @@ $(document).ready(function() {
     });
 
     $('#solvebtn').click(function(evt) {
-        socket.emit('solve', instanceToJsonGdxFormat(knapsackInstance));
+        socket.emit('solve', { code: $('#tamodelcode').val(), data: instanceToJsonGdxFormat(knapsackInstance) });
     });
 
     socket.on('solveresult', function(data) {

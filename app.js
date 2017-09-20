@@ -25,12 +25,15 @@ io.on('connection', function (socket) {
     socket.on('my other event', function (data) {
         console.log(data);
     });
+
+    fs.readFile(__dirname + '/example_client/knapsack.gms', 'utf8', function (err, knapsackCode) {
+        if(err) return;
+        socket.emit('sendcode', { code: knapsackCode });
+    });
+
     socket.on('solve', function(data) {
-        fs.readFile(__dirname + '/example_client/knapsack.gms', function (err, knapsackCode) {
-            if(err) return;
-            const res = jsontogdx.solveModelWithDataJson(knapsackCode, data);
-            socket.emit('solveresult', res);
-        });
+        const res = jsontogdx.solveModelWithDataJson(data.code, data.data);
+        socket.emit('solveresult', res);
     });
 });
 
